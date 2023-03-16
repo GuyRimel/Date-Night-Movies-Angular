@@ -1,10 +1,15 @@
 <mat-card>
   <mat-card-header>
+<<<<<<< HEAD
     <mat-card-title>Sign Up!</mat-card-title>
+=======
+    <mat-card-title>Sign Up, Stranger!</mat-card-title>
+>>>>>>> 6.3
   </mat-card-header>
   <mat-card-content>
     <form>
       <mat-form-field>
+<<<<<<< HEAD
         <input matInput
           [(ngModel)]="userData.Username"
           placeholder="Username"
@@ -38,6 +43,18 @@
           placeholder="Birthday"
           name="Birthday"
         />
+=======
+        <input matInput [(ngModel)]="userData.Username" placeholder="Username" type="text" name="Username" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password" name="Password" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="userData.Email" type="email" placeholder="Email" name="Email" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="userData.Birthday" type="date" placeholder="Birthday" name="Birthday">
+>>>>>>> 6.3
       </mat-form-field>
     </form>
   </mat-card-content>
