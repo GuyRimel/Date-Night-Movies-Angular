@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { MatDialog } from '@angular/material/dialog';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 =======
@@ -7,6 +8,8 @@ import { UserRegistrationFormComponent } from './user-registration-form/user-reg
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { MatDialog } from '@angular/material/dialog';
 >>>>>>> 6.3
+=======
+>>>>>>> 6.4
 
 @Component({
   selector: 'app-root',
@@ -16,6 +19,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 export class AppComponent {
   title = 'myFlix-Angular-client';
+<<<<<<< HEAD
 
   constructor(public dialog: MatDialog) {}
   // This is the function that will open the dialog when the signup button is clicked
@@ -38,3 +42,6 @@ export class AppComponent {
   }
 }
 >>>>>>> 6.3
+=======
+}
+>>>>>>> 6.4
