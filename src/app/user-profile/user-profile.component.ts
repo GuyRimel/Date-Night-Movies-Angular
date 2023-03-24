@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog'; // Close dialog on success
-import { FetchApiDataService } from '../fetch-api-data.service'; // API
-import { MatSnackBar } from '@angular/material/snack-bar'; // Notifications
-import { Router } from '@angular/router'; // Routing
+import { MatDialogRef } from '@angular/material/dialog';
+import { FetchApiDataService } from '../fetch-api-data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -30,12 +30,7 @@ export class UserProfileComponent implements OnInit {
     this.getUserInfo();
   }
 
-  /**
-   * Fetch user data via API
-   * @returns object with user information
-   * @function getUserInfo
-   */
-
+  // Fetch user data via API
   getUserInfo(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.user = resp;
@@ -48,11 +43,7 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  /**
-   * Update user data, such as username, password, email, or birthday
-   * @function updateUserInfo
-   */
-
+  // Update user data, such as username, password, email, or birthday
   updateUserInfo(): void {
     this.fetchApiData.editUser(this.updatedUser).subscribe((result) => {
       console.log(result);
@@ -73,11 +64,7 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  /**
-   * Delete user data for the user that is logged in
-   * @function deleteAccount
-   */
-
+  // Delete user data for the user that is logged in
   deleteAccount(): void {
     if (confirm('All your data will be lost - this cannnot be undone!')) {
       this.router.navigate(['welcome']).then(() => {
