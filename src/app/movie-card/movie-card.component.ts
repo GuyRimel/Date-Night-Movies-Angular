@@ -27,12 +27,6 @@ export class MovieCardComponent {
     this.getFavorites();
   }
 
-  /**
-   * Fetch movies via API and set movies state to returned JSON file
-   * @returns array holding movies objects
-   * @function getMovies
-   */
-
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -41,41 +35,23 @@ export class MovieCardComponent {
     });
   }
 
-  /**
-   * Fetch user info via API and set favorites state to returned JSON file
-   * @returns array holding IDs of favorites
-   * @function getFavorites
-   */
-
+  // Fetch user info and set favorites
   getFavorites(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.favorites = resp.FavoriteMovies;
-      console.log(this.favorites);
       return this.favorites;
     });
   }
 
-  /**
-   * Checks if a movie is included in a user's favorite movies
-   * @param {string} id
-   * @returns boolean
-   * @function isFavorite
-   */
-
+   // check if a movie is a user's favorite
   isFavorite(id: string): boolean {
     return this.favorites.includes(id);
   }
 
-  /**
-   * Adds a movie to a user's favorites via an API call
-   * @param {string} id
-   * @function addToFavorites
-   */
-
+  // add a movie to a user's favorites
   addToFavorites(id: string): void {
     console.log(id);
     this.fetchApiData.addFavoriteMovie(id).subscribe((result) => {
-      console.log(result);
       this.snackBar.open('Movie added to favorites', 'OK', {
         duration: 2000,
       });
@@ -83,16 +59,10 @@ export class MovieCardComponent {
     });
   }
 
-  /**
-   * Removes a movie from a user's favorites via an API call
-   * @param {string} id
-   * @function removeFromFavorites
-   */
-
+  // Removes a movie from a user's favorites
   removeFromFavorites(id: string): void {
     console.log(id);
     this.fetchApiData.removeFavoriteMovie(id).subscribe((result) => {
-      console.log(result);
       this.snackBar.open('Movie removed from favorites', 'OK', {
         duration: 2000,
       });
@@ -100,32 +70,18 @@ export class MovieCardComponent {
     });
   }
 
-  /**
-   * Opens genre information from GenreComponent
-   * @param {string} name
-   * @param {string} description
-   * @function openGenre
-   */
-
+  // Open genre information from GenreComponent
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreComponent, {
       data: {
         Name: name,
         Description: description,
       },
-      panelClass: 'genre-dialog-background',
       width: '400px',
     });
   }
 
-  /**
-   * Opens director information from DirectorComponent
-   * @param {string} name
-   * @param {string} bio
-   * @param {string} birthday
-   * @function openDirector
-   */
-
+  // Open director information from DirectorComponent
   openDirector(name: string, bio: string, birthday: string): void {
     this.dialog.open(DirectorComponent, {
       data: {
@@ -133,25 +89,17 @@ export class MovieCardComponent {
         Bio: bio,
         Birth: birthday,
       },
-      panelClass: 'director-dialog-background',
       width: '400px',
     });
   }
 
-  /**
-   * Opens movie details from MovieDetailsComponent
-   * @param {string} title
-   * @param {string} description
-   * @function openSummary
-   */
-
+  // Open movie details from MovieDetailsComponent
   openSummary(title: string, description: string): void {
     this.dialog.open(MovieDetailsComponent, {
       data: {
         Title: title,
         Description: description,
       },
-      panelClass: 'summary-dialog-background',
       width: '400px',
     });
   }

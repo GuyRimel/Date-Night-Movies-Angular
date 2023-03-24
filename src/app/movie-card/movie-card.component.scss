@@ -1,15 +1,46 @@
 .movie-view {
   display: grid;
-  min-width: 800px;
   max-width: 100vw;
   margin: 0 auto;
   padding: 2rem auto 5rem;
-  background: hsl(200, 5%, 65%);
-  grid-template-columns: 1fr 1fr 1fr;
-  row-gap: 2em;
+  row-gap: 1.65em;
+  background-color: hsl(200, 5%, 65%);
 }
 
 .movie-card {
+  margin-top: .35em;
   width: 30vw;
   justify-self: center;
+}
+
+@media screen and (min-width: 250px) {
+  .movie-view {
+    grid-template-columns: 1fr;
+  }
+  
+  .movie-card { width: 80vw; }
+}
+
+@media screen and (min-width: 500px) {
+  .movie-view {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .movie-card { width: 45vw; }
+}
+
+@media screen and (min-width: 750px) {
+  .movie-view {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .movie-card { width: 30vw; }
+}
+
+@media screen and (min-width: 1000px) {
+  .movie-view {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  
+  .movie-card { width: 20vw; }
 }

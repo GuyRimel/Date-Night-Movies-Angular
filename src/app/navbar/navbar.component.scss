@@ -1,0 +1,11 @@
+$bg-color: hsl(170, 10%, 80%);
+
+.nav-bar {
+  background-color: $bg-color;
+  display: flex;
+  padding: 1.25em;
+}
+
+.logout-button {
+  color: #555 !important;
+}
