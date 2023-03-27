@@ -31,19 +31,24 @@ export class UserFavoriteMoviesComponent {
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
+      console.log('movies: ',this.movies);
+      return this.movies;
     });
   }
-
-  // Fetch user info and set favorites
+  
+  // store user favorite _ids in an array
   getFavorites(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.favorites = resp.FavoriteMovies;
+      console.log('favorites: ',this.favorites);
+      return this.favorites;
     });
   }
-
-  // 
+  
+  // Push each movie object into an array if its _id matches a favorite
   setFavoriteMovies(): void {
-    console.log(this.movies);
+    console.log('settingFunction favorites: ',this.favorites);
+    console.log('settingFunction movies: ',this.movies);
     this.favoriteMovies = [];
     this.favorites.forEach(favorite => {
       this.movies.forEach(movie => {
@@ -51,6 +56,8 @@ export class UserFavoriteMoviesComponent {
           this.favoriteMovies.push(movie);
         }
       })
+      console.log('this never gets called');
+      return this.favoriteMovies;
     })
   }
 
