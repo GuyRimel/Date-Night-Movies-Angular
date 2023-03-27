@@ -11,6 +11,23 @@
   margin-top: .35em;
   width: 30vw;
   justify-self: center;
+  justify-content: center;
+}
+
+.mat-mdc-card-header {
+  padding: 0 .5em .25em;
+}
+
+.mat-mdc-card-header {
+  color: hsl(170, 40%, 40%)
+}
+
+.movie-card > img {
+  height: 70%;
+}
+
+.mdc-card__actions {
+  display: block;
 }
 
 @media screen and (min-width: 250px) {

@@ -1,7 +1,8 @@
+<app-navbar />
 <div class="profile-page">
   <mat-card class="profile-card">
     <mat-card-header class="profile-card-header">
-      <mat-card-title>Profile of {{ updatedUser.Username }}</mat-card-title>
+      <mat-card-title>Hey there, <b>{{ updatedUser.Username }}</b></mat-card-title>
     </mat-card-header>
     <mat-card-content class="user-profile-card-content">
       <form>
@@ -44,7 +45,7 @@
             matInput
             [(ngModel)]="updatedUser.Birthday"
             type="date"
-            value="{{ updatedUser.Birthday | date }}"
+            value="{{ updatedUser.Birthday | date:'yyyy-MM-dd' }}"
             name="Birthday"
           />
         </mat-form-field>
@@ -61,4 +62,5 @@
       </button>
     </mat-card-actions>
   </mat-card>
+  <app-user-favorite-movies />
 </div>

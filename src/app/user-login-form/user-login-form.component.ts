@@ -23,10 +23,12 @@ export class UserLoginFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // this func calls the func userLogin (found in FetchApiDataService)
-  // with the user input field data (object) as an argument
-  // the userLogin func sends an HTTP POST request to the backend
-  // with userData in the request body
+  /**
+  *  this func calls the func userLogin (found in FetchApiDataService)
+  *  with the user input field data (object) as an argument
+  *  the userLogin func sends an HTTP POST request to the backend
+  *  with userData in the request body
+  */
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe(
       (result) => {
@@ -39,7 +41,7 @@ export class UserLoginFormComponent implements OnInit {
         // Logic for a successful user registration goes here
         this.dialogRef.close(); // This will close the modal on success
         this.router.navigate(['movies']);
-        this.snackBar.open(result, 'OK', {
+        this.snackBar.open('log in successful', 'OK', {
           duration: 2000,
         });
       },

@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 export class UserProfileComponent implements OnInit {
   user: any = {};
   initialInput: any = {};
+  favorites = 'hey';
   @Input() updatedUser = {
     Username: '',
     Password: '',
@@ -23,7 +25,7 @@ export class UserProfileComponent implements OnInit {
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserProfileComponent>,
     public snackBar: MatSnackBar,
-    public router: Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -34,22 +36,20 @@ export class UserProfileComponent implements OnInit {
   getUserInfo(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.user = resp;
-      console.log(this.user);
       this.updatedUser.Username = this.user.Username;
       this.updatedUser.Email = this.user.Email;
-      this.updatedUser.Birthday = this.user.Birthday;
-      console.log(this.updatedUser);
+      // this.user.Birthday comes in as ISOString format, like so: "2011-10-05T14:48:00.000Z"
+      this.updatedUser.Birthday = formatDate(this.user.Birthday, 'yyyy-MM-dd', 'en-US');
+      this.favorites = this.user.FavoriteMovies;
       return this.user;
     });
   }
 
   // Update user data, such as username, password, email, or birthday
   updateUserInfo(): void {
+    this.updatedUser.Birthday = new Date(this.updatedUser.Birthday).toISOString();
     this.fetchApiData.editUser(this.updatedUser).subscribe((result) => {
       console.log(result);
-      this.snackBar.open('User profile successfully updated', 'OK', {
-        duration: 2000,
-      });
       if (this.user.Username !== result.Username) {
         localStorage.clear();
         this.router.navigate(['welcome']);

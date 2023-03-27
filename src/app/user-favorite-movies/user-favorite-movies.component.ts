@@ -7,13 +7,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-movie-card',
-  templateUrl: './movie-card.component.html',
-  styleUrls: ['./movie-card.component.scss'],
+  selector: 'app-user-favorite-movies',
+  templateUrl: './user-favorite-movies.component.html',
+  styleUrls: ['./user-favorite-movies.component.scss']
 })
-export class MovieCardComponent {
+
+export class UserFavoriteMoviesComponent {
   movies: any[] = [];
   favorites: any[] = [];
+  favoriteMovies: any[] = [];
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -23,12 +25,12 @@ export class MovieCardComponent {
   ngOnInit(): void {
     this.getMovies();
     this.getFavorites();
+    this.setFavoriteMovies();
   }
 
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      return this.movies;
     });
   }
 
@@ -36,8 +38,20 @@ export class MovieCardComponent {
   getFavorites(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.favorites = resp.FavoriteMovies;
-      return this.favorites;
     });
+  }
+
+  // 
+  setFavoriteMovies(): void {
+    console.log(this.movies);
+    this.favoriteMovies = [];
+    this.favorites.forEach(favorite => {
+      this.movies.forEach(movie => {
+        if(movie._id === favorite) {
+          this.favoriteMovies.push(movie);
+        }
+      })
+    })
   }
 
    // check if a movie is a user's favorite
@@ -47,7 +61,6 @@ export class MovieCardComponent {
 
   // add a movie to a user's favorites
   addToFavorites(id: string): void {
-    console.log(id);
     this.fetchApiData.addFavoriteMovie(id).subscribe((result) => {
       this.snackBar.open('Movie added to favorites', 'OK', {
         duration: 2000,
