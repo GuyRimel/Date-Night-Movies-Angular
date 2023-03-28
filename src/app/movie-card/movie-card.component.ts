@@ -25,6 +25,11 @@ export class MovieCardComponent {
     this.getFavorites();
   }
 
+  /**
+   * fetch movies from FetchApiDataService service getAllMovies()
+   * @returns an array of all movies
+   * @function getMovies
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -32,7 +37,11 @@ export class MovieCardComponent {
     });
   }
 
-  // Fetch user info and set favorites
+  /**
+   * fetch favorite movies from FetchApiDataService service getUser()
+   * @returns an empty array or an array of movies favorited by the user
+   * @function getFavorites
+   */
   getFavorites(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.favorites = resp.FavoriteMovies;
@@ -40,12 +49,15 @@ export class MovieCardComponent {
     });
   }
 
-   // check if a movie is a user's favorite
+  // check if a movie is a user's favorite, return boolean
   isFavorite(id: string): boolean {
     return this.favorites.includes(id);
   }
 
-  // add a movie to a user's favorites
+  /**
+   * add one favorite movie with FetchApiDataService service addFavoriteMovie()
+   * @function addToFavorites
+   */
   addToFavorites(id: string): void {
     console.log(id);
     this.fetchApiData.addFavoriteMovie(id).subscribe((result) => {
@@ -56,7 +68,10 @@ export class MovieCardComponent {
     });
   }
 
-  // Removes a movie from a user's favorites
+  /**
+   * remove one favorite movie with FetchApiDataService service addFavoriteMovie()
+   * @function removeFromFavorites
+   */
   removeFromFavorites(id: string): void {
     console.log(id);
     this.fetchApiData.removeFavoriteMovie(id).subscribe((result) => {
@@ -67,7 +82,12 @@ export class MovieCardComponent {
     });
   }
 
-  // Open genre information from GenreComponent
+  /**
+   * Open the Genre dialog modal
+   * @param name
+   * @param description
+   * @function openGenre
+   */
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreComponent, {
       data: {
@@ -78,7 +98,13 @@ export class MovieCardComponent {
     });
   }
 
-  // Open director information from DirectorComponent
+  /**
+   * Open the Director dialog modal
+   * @param name
+   * @param bio
+   * @param birthday
+   * @function openDirector
+   */
   openDirector(name: string, bio: string, birthday: string): void {
     this.dialog.open(DirectorComponent, {
       data: {
@@ -90,7 +116,12 @@ export class MovieCardComponent {
     });
   }
 
-  // Open movie details from MovieDetailsComponent
+  /**
+   * Open movie details dialog modal
+   * @param title
+   * @param description
+   * @function openSummary
+   */
   openSummary(title: string, description: string): void {
     this.dialog.open(MovieDetailsComponent, {
       data: {
