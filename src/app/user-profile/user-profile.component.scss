@@ -1,0 +1,12 @@
+.user-info {
+  background: #777;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1em;
+}
+
+.user-info > * {
+  margin: 0 1px;
+  border-radius: .2rem;
+}

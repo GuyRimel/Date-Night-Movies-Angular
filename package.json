@@ -1,7 +1,7 @@
 {
   "name": "date-night-movies-angular",
   "version": "0.0.0",
-  "deploymentURL": "https://guyrimel.github.io/Date-Night-Movies-Angular/",
+  "deploymentURL": "https://guyrimel.github.io/Date-Night-Movies-Angular-Client/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
