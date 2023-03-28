@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'myFlix-Angular-client';
+  title = 'Date Night Movies Angular';
 }

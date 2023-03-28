@@ -13,7 +13,7 @@ import { formatDate } from '@angular/common';
 export class UserProfileComponent implements OnInit {
   user: any = {};
   initialInput: any = {};
-  favorites = 'hey';
+  favorites: any = [];
   @Input() updatedUser = {
     Username: '',
     Password: '',
@@ -39,7 +39,7 @@ export class UserProfileComponent implements OnInit {
       this.updatedUser.Username = this.user.Username;
       this.updatedUser.Email = this.user.Email;
       // this.user.Birthday comes in as ISOString format, like so: "2011-10-05T14:48:00.000Z"
-      this.updatedUser.Birthday = formatDate(this.user.Birthday, 'yyyy-MM-dd', 'en-US');
+      this.updatedUser.Birthday = formatDate(this.user.Birthday, 'yyyy-MM-dd', 'en-US', 'UTC+0');
       this.favorites = this.user.FavoriteMovies;
       return this.user;
     });
@@ -47,14 +47,22 @@ export class UserProfileComponent implements OnInit {
 
   // Update user data, such as username, password, email, or birthday
   updateUserInfo(): void {
-    this.updatedUser.Birthday = new Date(this.updatedUser.Birthday).toISOString();
     this.fetchApiData.editUser(this.updatedUser).subscribe((result) => {
       console.log(result);
-      if (this.user.Username !== result.Username) {
+      if (this.user.Username !== result.Username || this.user.Password !== result.Password) {
         localStorage.clear();
         this.router.navigate(['welcome']);
         this.snackBar.open(
-          'User profile successfully updated. Please login using your new credentials',
+          'Credentials updated! Please login using your new credentials',
+          'OK',
+          {
+            duration: 2000,
+          }
+        );
+      }
+      else {
+        this.snackBar.open(
+          'User information has been updated!',
           'OK',
           {
             duration: 2000,

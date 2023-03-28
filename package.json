@@ -1,14 +1,14 @@
 {
-  "name": "my-flix-angular-client",
+  "name": "date-night-movies-angular",
   "version": "0.0.0",
-  "deploymentURL": "https://guyrimel.github.io/myFlix-Angular-client/",
+  "deploymentURL": "https://guyrimel.github.io/Date-Night-Movies-Angular/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng deploy --base-href=/myFlix-Angular-client/"
+    "deploy": "ng deploy --base-href=/Date-Night-Movies-Angular-Client/"
   },
   "private": true,
   "dependencies": {

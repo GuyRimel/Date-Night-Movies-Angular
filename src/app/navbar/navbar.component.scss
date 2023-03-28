@@ -1,9 +1,17 @@
 $bg-color: hsl(170, 20%, 80%);
 
+.top-title {
+  background-color: hsl(170, 20%, 75%);
+  color: hsl(170, 20%, 100%);
+  text-shadow: 1px 2px black;
+  margin: 0;
+  padding: 0 0 0.5rem 1rem;
+}
+
 .nav-bar {
   background-color: $bg-color;
   display: flex;
-  padding: 1.25em;
+  padding: 1rem;
 }
 
 .logout-button {

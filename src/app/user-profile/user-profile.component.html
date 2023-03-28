@@ -18,14 +18,13 @@
           />
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Password</mat-label>
+          <mat-label>Update Password</mat-label>
           <input
             matInput
             [(ngModel)]="updatedUser.Password"
             placeholder=""
             type="password"
             name="Password"
-            required
           />
         </mat-form-field>
         <mat-form-field>
@@ -45,7 +44,7 @@
             matInput
             [(ngModel)]="updatedUser.Birthday"
             type="date"
-            value="{{ updatedUser.Birthday | date:'yyyy-MM-dd' }}"
+            value="{{ updatedUser.Birthday | date:'yyyy-MM-dd':'UTC+0' }}"
             name="Birthday"
           />
         </mat-form-field>
