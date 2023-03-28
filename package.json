@@ -8,7 +8,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng deploy --base-href=/Date-Night-Movies-Angular-Client/"
+    "deploy": "ng deploy --base-href=/Date-Night-Movies-Angular-Client/",
+    "typedoc": "npx typedoc --out docs"
   },
   "private": true,
   "dependencies": {
