@@ -1,6 +1,6 @@
-<mat-card>
+<mat-card class="login-card">
   <mat-card-header>
-    <mat-card-title>Log in, Homie!</mat-card-title>
+    <mat-card-title style="margin-bottom: 1em;"><h3>Log in, Homie!</h3></mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form>
@@ -12,9 +12,7 @@
       </mat-form-field>
     </form>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button (click)="loginUser()" color="primary">
-      Log in
-    </button>
-  </mat-card-actions>
+  <button mat-raised-button (click)="loginUser()" color="primary">
+    Log in
+  </button>
 </mat-card>

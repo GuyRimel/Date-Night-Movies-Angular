@@ -1,0 +1,15 @@
+.login-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-mdc-form-field {
+  display: block;
+}
+
+button {
+  width: 70%;
+  margin-bottom: 1.5em;
+}

@@ -18,6 +18,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 
 export class AppComponent {
+<<<<<<< HEAD
   title = 'myFlix-Angular-client';
 <<<<<<< HEAD
 
@@ -43,5 +44,9 @@ export class AppComponent {
 }
 >>>>>>> 6.3
 =======
+}
+>>>>>>> 6.4
+=======
+  title = 'Date Night Movies Angular';
 }
 >>>>>>> 6.4
