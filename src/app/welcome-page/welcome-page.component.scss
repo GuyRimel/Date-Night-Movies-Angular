@@ -1,0 +1,23 @@
+$color: hsl(200, 5%, 85%);
+
+.welcome-page {
+  background-color: $color !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 18rem;
+  margin: 15vh auto;
+  padding: .75em;
+  border-radius: 3px;
+  box-shadow: 0 .75em 1.25em #0004;
+}
+
+.welcome-page__title {
+  text-align: center;
+}
+
+button {
+  width: 70%;
+  margin-bottom: .5em;
+}

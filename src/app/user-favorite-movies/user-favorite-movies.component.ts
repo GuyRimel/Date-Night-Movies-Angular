@@ -9,11 +9,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-user-favorite-movies',
   templateUrl: './user-favorite-movies.component.html',
-  styleUrls: ['./user-favorite-movies.component.scss']
+  styleUrls: ['./user-favorite-movies.component.scss'],
 })
-
 export class UserFavoriteMoviesComponent {
-  movies: any[] = [];
   favorites: any[] = [];
   favoriteMovies: any[] = [];
   constructor(
@@ -23,45 +21,23 @@ export class UserFavoriteMoviesComponent {
   ) {}
 
   ngOnInit(): void {
-    this.getMovies();
-    this.getFavorites();
-    this.setFavoriteMovies();
+    this.getFavoriteMovies();
   }
 
-  getMovies(): void {
-    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      this.movies = resp;
-      console.log('movies: ',this.movies);
-      return this.movies;
-    });
-  }
-  
-  // store user favorite _ids in an array
-  getFavorites(): void {
+  getFavoriteMovies(): void {
+    this.favorites, this.favoriteMovies = [];
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.favorites = resp.FavoriteMovies;
-      console.log('favorites: ',this.favorites);
-      return this.favorites;
+      this.favorites.map((favorite: any) => {
+        console.log(favorite);
+        this.fetchApiData.getMovieById(favorite).subscribe((resp: any) => {
+          this.favoriteMovies.push(resp);
+        });
+      });
     });
   }
-  
-  // Push each movie object into an array if its _id matches a favorite
-  setFavoriteMovies(): void {
-    console.log('settingFunction favorites: ',this.favorites);
-    console.log('settingFunction movies: ',this.movies);
-    this.favoriteMovies = [];
-    this.favorites.forEach(favorite => {
-      this.movies.forEach(movie => {
-        if(movie._id === favorite) {
-          this.favoriteMovies.push(movie);
-        }
-      })
-      console.log('this never gets called');
-      return this.favoriteMovies;
-    })
-  }
 
-   // check if a movie is a user's favorite
+  // check if a movie is a user's favorite
   isFavorite(id: string): boolean {
     return this.favorites.includes(id);
   }
