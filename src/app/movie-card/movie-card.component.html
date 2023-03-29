@@ -11,14 +11,20 @@
     <mat-card-actions>
       <button
         mat-button
-        (click)="openSummary(movie.Title, movie.Description)"
+        (click)="openSummary(
+          movie.Title,
+          movie.Description
+        )"
         color="basic"
       >
         Summary
       </button>
       <button
         mat-button
-        (click)="openGenre(movie.Genre.Name, movie.Genre.Description)"
+        (click)="openGenre(
+          movie.Genre.Name,
+          movie.Genre.Description
+        )"
         color="basic"
       >
         Genre
@@ -30,8 +36,7 @@
             movie.Director.Name,
             movie.Director.Bio,
             movie.Director.Birth
-          )
-        "
+        )"
         color="basic"
       >
         Director
