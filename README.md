@@ -42,5 +42,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Screenshots
 
-![Screenshot 1](./docs/screenshot00.png?raw=true)
-![Screenshot 2](./docs/screenshot01.png?raw=true)
+![Screenshot 1](docs/screenshots/screenshot00.png?raw=true)
+![Screenshot 2](docs/screenshots/screenshot01.png?raw=true)
