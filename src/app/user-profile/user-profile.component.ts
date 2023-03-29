@@ -10,10 +10,16 @@ import { formatDate } from '@angular/common';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],
 })
+
+/**
+ * The UserProfileComponent provides the user profile view.
+ * 
+ * Displays user info, the ability to modify user info, or
+ * delete the user's account. This is also where a user
+ * can view/edit their favorite movies.
+ */
 export class UserProfileComponent implements OnInit {
   user: any = {};
-  initialInput: any = {};
-  favorites: any = [];
   @Input() updatedUser = {
     Username: '',
     Password: '',
@@ -32,7 +38,10 @@ export class UserProfileComponent implements OnInit {
     this.getUserInfo();
   }
 
-  // Fetch user data via API
+  /**
+   * Fetch (GET) the user's info with fetchApiData.getUser()
+   * @returns an object of the user's info
+   */
   getUserInfo(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.user = resp;
@@ -40,52 +49,52 @@ export class UserProfileComponent implements OnInit {
       this.updatedUser.Email = this.user.Email;
       // this.user.Birthday comes in as ISOString format, like so: "2011-10-05T14:48:00.000Z"
       this.updatedUser.Birthday = formatDate(this.user.Birthday, 'yyyy-MM-dd', 'en-US', 'UTC+0');
-      this.favorites = this.user.FavoriteMovies;
       return this.user;
     });
   }
 
-  // Update user data, such as username, password, email, or birthday
+  /**
+   * Update (PUT) the user's info with fetchApiData.editUser()
+   */
   updateUserInfo(): void {
-    this.fetchApiData.editUser(this.updatedUser).subscribe((result) => {
-      console.log(result);
-      if (this.user.Username !== result.Username || this.user.Password !== result.Password) {
+    this.fetchApiData.editUser(this.updatedUser).subscribe(result => {
+      if (
+        this.user.Username !== result.Username ||
+        this.user.Password !== result.Password
+      ) {
         localStorage.clear();
         this.router.navigate(['welcome']);
         this.snackBar.open(
           'Credentials updated! Please login using your new credentials',
           'OK',
-          {
-            duration: 2000,
-          }
+          { duration: 2000 }
         );
       }
       else {
         this.snackBar.open(
-          'User information has been updated!',
+          'User information updated',
           'OK',
-          {
-            duration: 2000,
-          }
+          { duration: 2000 }
         );
       }
     });
   }
-
-  // Delete user data for the user that is logged in
+  
+  /**
+   * Delete (DELETE) the user's info with fetchApiData.deleteUser()
+   */
   deleteAccount(): void {
-    if (confirm('All your data will be lost - this cannnot be undone!')) {
+    if (
+      confirm('All your data will be lost - this cannnot be undone!')
+    ) {
       this.router.navigate(['welcome']).then(() => {
         this.snackBar.open(
-          'You have successfully deleted your account - we are sorry to see you go!',
+          'You have successfully deleted your account - Peace!',
           'OK',
-          {
-            duration: 2000,
-          }
+          { duration: 2000 }
         );
       });
-      this.fetchApiData.deleteUser().subscribe((result) => {
-        console.log(result);
+      this.fetchApiData.deleteUser().subscribe(() => {
         localStorage.clear();
       });
     }

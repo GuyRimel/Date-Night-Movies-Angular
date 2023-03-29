@@ -11,7 +11,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.scss'],
 })
-export class MovieCardComponent {
+
+/**
+ * The MovieCardComponent class fetches and displays all movies in card format
+ */
+export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   favorites: any[] = [];
   constructor(
@@ -26,11 +30,10 @@ export class MovieCardComponent {
   }
 
   /**
-   * fetch movies from FetchApiDataService service getAllMovies()
-   * @returns an array of all movies
-   * @function getMovies
+   * Fetch all movies with FetchApiDataService.getAllMovies()
+   * @returns all movies in an array of objects
    */
-  getMovies(): void {
+  getMovies(): any {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
       return this.movies;
@@ -38,28 +41,30 @@ export class MovieCardComponent {
   }
 
   /**
-   * fetch favorite movies from FetchApiDataService service getUser()
+   * Fetch the user's favorite movies with FetchApiDataService.getUser()
    * @returns an empty array or an array of movies favorited by the user
-   * @function getFavorites
    */
-  getFavorites(): void {
+  getFavorites(): any {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.favorites = resp.FavoriteMovies;
       return this.favorites;
     });
   }
 
-  // check if a movie is a user's favorite, return boolean
+  /**
+   * Check if a movie id is included in the user's favorites
+   * @param id
+   * @returns a boolean value
+   */
   isFavorite(id: string): boolean {
     return this.favorites.includes(id);
   }
 
   /**
-   * add one favorite movie with FetchApiDataService service addFavoriteMovie()
-   * @function addToFavorites
+   * Add one movie id into the user's favorites with FetchApiDataService.addFavoriteMovie()
+   * @param id
    */
   addToFavorites(id: string): void {
-    console.log(id);
     this.fetchApiData.addFavoriteMovie(id).subscribe((result) => {
       this.snackBar.open('Movie added to favorites', 'OK', {
         duration: 2000,
@@ -69,11 +74,10 @@ export class MovieCardComponent {
   }
 
   /**
-   * remove one favorite movie with FetchApiDataService service addFavoriteMovie()
-   * @function removeFromFavorites
+   * Remove one movie id from the user's favorites with FetchApiDataService.removeFavoriteMovie()
+   * @param id
    */
   removeFromFavorites(id: string): void {
-    console.log(id);
     this.fetchApiData.removeFavoriteMovie(id).subscribe((result) => {
       this.snackBar.open('Movie removed from favorites', 'OK', {
         duration: 2000,
@@ -83,10 +87,24 @@ export class MovieCardComponent {
   }
 
   /**
-   * Open the Genre dialog modal
+   * Open the Movie Details dialog modal displaying the movie title and description
+   * @param title
+   * @param description
+   */
+  openSummary(title: string, description: string): void {
+    this.dialog.open(MovieDetailsComponent, {
+      data: {
+        Title: title,
+        Description: description,
+      },
+      width: '25rem',
+    });
+  }
+
+  /**
+   * Open the Genre dialog modal diplaying the movie genre info
    * @param name
    * @param description
-   * @function openGenre
    */
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreComponent, {
@@ -94,16 +112,15 @@ export class MovieCardComponent {
         Name: name,
         Description: description,
       },
-      width: '400px',
+      width: '25rem',
     });
   }
 
   /**
-   * Open the Director dialog modal
+   * Open the Director dialog modal displaying the movie director info
    * @param name
-   * @param bio
+   * @param bio 
    * @param birthday
-   * @function openDirector
    */
   openDirector(name: string, bio: string, birthday: string): void {
     this.dialog.open(DirectorComponent, {
@@ -112,23 +129,7 @@ export class MovieCardComponent {
         Bio: bio,
         Birth: birthday,
       },
-      width: '400px',
-    });
-  }
-
-  /**
-   * Open movie details dialog modal
-   * @param title
-   * @param description
-   * @function openSummary
-   */
-  openSummary(title: string, description: string): void {
-    this.dialog.open(MovieDetailsComponent, {
-      data: {
-        Title: title,
-        Description: description,
-      },
-      width: '400px',
+      width: '25rem',
     });
   }
 }
