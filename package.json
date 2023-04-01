@@ -1,14 +1,14 @@
 {
   "name": "date-night-movies-angular",
   "version": "0.0.0",
-  "deploymentURL": "https://guyrimel.github.io/Date-Night-Movies-Angular-Client/",
+  "deploymentURL": "https://guyrimel.github.io/Date-Night-Movies-Angular/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng deploy --base-href=/Date-Night-Movies-Angular-Client/",
+    "deploy": "ng deploy --base-href=/Date-Night-Movies-Angular/",
     "typedoc": "npx typedoc --out docs"
   },
   "private": true,
