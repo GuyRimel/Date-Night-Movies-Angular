@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,21 +7,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 
-export class NavbarComponent implements OnInit {
+/**
+ * The NavbarComponent provides a simple UI with a fixed position at the top
+ * of the screen for the Movies view and Profile view. This is also where the user can log out.
+ */
+export class NavbarComponent {
   constructor(public router: Router) {}
-  ngOnInit(): void {}
 
-  // Navigates to movies page
+  /**
+   * Navigates to the movies view
+   */
   toMovies(): void {
     this.router.navigate(['movies']);
   }
 
-  // Navigates to user profile
+  /**
+   * Navigates to the user's profile view
+   */
   toProfile(): void {
     this.router.navigate(['profile']);
   }
 
-  // logs out user, clears token and username from local storage
+  /**
+   * Logs out the user by clearing the localStorage,
+   * thereby deleting the "user" and "token" key/values
+   */
   logout(): void {
     this.router.navigate(['welcome']);
     localStorage.clear();
